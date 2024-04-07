@@ -5,3 +5,4 @@ Objetivo do projeto: Criar um website que faça a compra de ingressos para os Jo
 ### Integrantes do grupo:
     Gustavo Ferreira Gitzel - 223559
     Maria Eduarda Elias Rocha - 248408
+    Sara Beatriz da Silva Oliveira - 231288
