@@ -1,0 +1,2 @@
+${AnsiColor.BLUE}Medalseats Management ${application.formatted-version}
+${AnsiColor.BLUE}Running on Spring Boot ${spring-boot.formatted-version}

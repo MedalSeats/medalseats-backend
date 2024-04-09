@@ -1,0 +1,134 @@
+[versions]
+compiler-kotlin = "1.8"
+compiler-java = "17"
+kotlin = "1.8.0"
+kotlinter = "3.13.0"
+test-logger = "3.2.0"
+jacoco-log = "3.1.0"
+jacobo = "2.1.0"
+avro = "1.11.1"
+aws-sdk = "2.20.118"
+disruptor = "3.4.4"
+jackson = "2.15.2"
+javax-money-api = "1.1"
+jwt = "4.4.0"
+kaml = "0.53.0"
+kotest-core = "5.5.5"
+kotest-spring = "4.4.3"
+kotlin-logging = "3.0.5"
+slf4j = "1.7.36"
+kotlinx-collections-immutable = "0.3.5"
+kotlinx-coroutines = "1.6.4"
+kotlinx-datetime = "0.4.0"
+kotlinx-serialization-json = "1.4.1"
+log4j = "2.19.0"
+micrometer = "1.11.2"
+mockk = "1.13.5"
+moneta = "1.4.2"
+netty = "4.1.100.Final"
+reactor-netty = "1.0.32"
+resilience4j = "2.1.0"
+snakeyaml = "2.1"
+spring-boot = "3.1.2"
+valiktor = "0.12.0"
+wiremock = "3.0.0-beta-10"
+guava = "32.1.2-jre"
+r2dbc-postgresql = "1.0.2.RELEASE"
+jdbc-postgresql = "42.6.0"
+flyway = "8.2.3"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
+test-logger = { id = "com.adarshr.test-logger", version.ref = "test-logger" }
+jacoco-log = { id = "org.barfuin.gradle.jacocolog", version.ref = "jacoco-log" }
+jacobo = { id = "com.kageiit.jacobo", version.ref = "jacobo" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+flyway = { id = "org.flywaydb.flyway", version.ref = "flyway" }
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-guava = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-guava", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-slf4j = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-debug = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-debug", version.ref = "kotlinx-coroutines" }
+
+aws-sdk-bom = { module = "software.amazon.awssdk:bom", version.ref = "aws-sdk" }
+aws-sdk-auth = { module = "software.amazon.awssdk:auth", version.ref = "aws-sdk" }
+aws-sdk-netty = { module = "software.amazon.awssdk:netty-nio-client" }
+aws-sdk-s3 = { module = "software.amazon.awssdk:s3" }
+aws-sdk-kms = { module = "software.amazon.awssdk:kms" }
+aws-sdk-sts = { module = "software.amazon.awssdk:sts" }
+aws-sdk-sqs = { module = "software.amazon.awssdk:sqs", version.ref = "aws-sdk" }
+aws-sdk-metrics = { module = "software.amazon.awssdk:metrics" }
+aws-sdk-cloudwatch = { module = "software.amazon.awssdk:cloudwatch-metric-publisher", version.ref = "aws-sdk" }
+
+resilience4j-bom = { module = "io.github.resilience4j:resilience4j-bom", version.ref = "resilience4j" }
+resilience4j-kotlin = { module = "io.github.resilience4j:resilience4j-kotlin" }
+resilience4j-reactor = { module = "io.github.resilience4j:resilience4j-reactor" }
+resilience4j-micrometer = { module = "io.github.resilience4j:resilience4j-micrometer" }
+resilience4j-circuitbreaker = { module = "io.github.resilience4j:resilience4j-circuitbreaker" }
+resilience4j-timelimiter = { module = "io.github.resilience4j:resilience4j-timelimiter" }
+resilience4j-spring-boot2 = { module = "io.github.resilience4j:resilience4j-spring-boot2" }
+
+log4j-bom = { module = "org.apache.logging.log4j:log4j-bom", version.ref = "log4j" }
+
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-core = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot-starter-data-r2dbc = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-log4j2 = { module = "org.springframework.boot:spring-boot-starter-log4j2" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+micrometer-core = { module = "io.micrometer:micrometer-core", version.ref = "micrometer" }
+micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }
+
+javax-money-api = { module = "javax.money:money-api", version.ref = "javax-money-api" }
+javax-money-moneta = { module = "org.javamoney:moneta", version.ref = "moneta" }
+
+valiktor-core = { module = "org.valiktor:valiktor-core", version.ref = "valiktor" }
+valiktor-javatime = { module = "org.valiktor:valiktor-javatime", version.ref = "valiktor" }
+valiktor-javamoney = { module = "org.valiktor:valiktor-javamoney", version.ref = "valiktor" }
+valiktor-test = { module = "org.valiktor:valiktor-test", version.ref = "valiktor" }
+
+kotlin-logging = { module = "io.github.microutils:kotlin-logging", version.ref = "kotlin-logging" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+jwt = { module = "com.auth0:java-jwt", version.ref = "jwt" }
+disruptor = { module = "com.lmax:disruptor", version.ref = "disruptor" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+kotest-framework-api = { module = "io.kotest:kotest-framework-api-jvm", version.ref = "kotest-core" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest-core" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest-core" }
+kotest-extensions-spring = { module = "io.kotest:kotest-extensions-spring-jvm", version.ref = "kotest-spring" }
+
+kaml = { module = "com.charleskorn.kaml:kaml", version.ref = "kaml" }
+
+jackson-java8 = { module = "com.fasterxml.jackson.module:jackson-modules-java8", version.ref = "jackson" }
+jackson-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-time = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+
+netty-codec = { module = "io.netty:netty-codec", version.ref = "netty" }
+reactor-netty = { module = "io.projectreactor.netty:reactor-netty", version.ref = "reactor-netty" }
+
+wiremock = { module = "com.github.tomakehurst:wiremock-standalone", version.ref = "wiremock" }
+
+google-guava = { module = "com.google.guava:guava", version.ref = "guava" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+
+r2dbc-pool = { module = "io.r2dbc:r2dbc-pool" }
+r2dbc-postgresql = { module = "org.postgresql:r2dbc-postgresql", version.ref = "r2dbc-postgresql" }
+jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-postgresql" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }

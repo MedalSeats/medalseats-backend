@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: medalseats-management
+  main:
+    banner-mode: log
+    web-application-type: REACTIVE
+  web:
+    resources:
+      add-mappings: false
+
+context:
+  initializer:
+    classes: com.unicamp.medalseats.MedalseatsManagementInitializer
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+    prometheus:
+      exposure:
+        include: "*"
+  health:
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
+
+endpoints:
+  prometheus:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.javamoney.moneta: WARN
+  config: "classpath:${LOGGING_CONFIG_FILE:log4j2.xml}"
