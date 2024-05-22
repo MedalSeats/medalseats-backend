@@ -1,5 +1,10 @@
 package com.unicamp.medalseats
 
+import com.medalseats.adapter.http.query.match.MatchHttpHandler
+import com.medalseats.adapter.http.query.router
+import com.medalseats.adapter.r2dbc.match.MatchR2dbcRepository
+import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
+import com.medalseats.application.query.match.FindMatchByIdQueryHandler
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -25,6 +30,19 @@ fun rootRouter() = coRouter {
 fun beans(context: GenericApplicationContext) = beans {
     // HTTP handlers
     bean(::rootRouter)
+    bean(::router)
+
+    // Repositories
+    bean<MatchR2dbcRepository>()
+
+    // HTTP handlers
+    bean<MatchHttpHandler>()
+
+    // Query handlers
+    bean<FindMatchByIdQueryHandler>()
+
+    // Transaction scope
+    bean<R2dbcTransactionScope>()
 }
 
 fun <T : Any> BeanDefinitionDsl.bean(context: GenericApplicationContext, type: KClass<T>) {

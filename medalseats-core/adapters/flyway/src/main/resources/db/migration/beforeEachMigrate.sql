@@ -1,0 +1,2 @@
+SET ROLE "medalseats";
+SET STATEMENT_TIMEOUT TO '300s';

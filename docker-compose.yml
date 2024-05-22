@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: medalseats_pg
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: medalseats
+      POSTGRES_PASSWORD: medalseats
+      POSTGRES_DB: medalseats
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U medalseats" ]
+      interval: 2s
+      timeout: 3s
+      retries: 30

@@ -9,6 +9,13 @@ spring:
   web:
     resources:
       add-mappings: false
+  r2dbc:
+    name: medalseats
+    url: r2dbc:pool:postgresql://localhost:5432/medalseats
+    username: medalseats
+    password: ${DB_PASS_MEDALSEATS_APP:medalseats}
+    properties:
+      preparedStatementCacheQueries: 0
 
 context:
   initializer:
