@@ -9,11 +9,12 @@ import com.unicamp.medalseats.account.Account
 import com.unicamp.medalseats.account.AccountRepository
 import com.unicamp.medalseats.account.toAccountId
 import io.r2dbc.spi.Row
-import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
+import kotlinx.datetime.toKotlinInstant
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.await
 import org.springframework.r2dbc.core.awaitSingleOrNull
+import java.time.Instant
 import java.util.UUID
 
 class AccountR2dbcRepository(private val db: DatabaseClient) : AccountRepository {
@@ -38,7 +39,7 @@ class AccountR2dbcRepository(private val db: DatabaseClient) : AccountRepository
         id = this.get<UUID>("id").toAccountId(),
         name = this.get<String>("name"),
         email = this.get<String>("email"),
-        birthday = this.get<Instant>("birthday"),
+        birthday = this.get<Instant>("birthday").toKotlinInstant(),
         password = this.get<String>("password"),
     )
 }

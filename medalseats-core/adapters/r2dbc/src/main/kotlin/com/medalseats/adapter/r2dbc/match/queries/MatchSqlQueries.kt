@@ -9,9 +9,14 @@ object MatchSqlQueries : DefaultSqlQueries() {
         """
             SELECT
                 id,
-                name,
+                title,
+                subtitle,
+                description,
+                date,
                 latitude,
-                longitude
+                longitude,
+                banner_url,
+                stadium_url
             FROM match
             WHERE 1 = 1
         """

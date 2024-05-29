@@ -9,8 +9,10 @@ import com.unicamp.medalseats.match.MatchId
 import com.unicamp.medalseats.match.MatchRepository
 import com.unicamp.medalseats.match.toMatchId
 import io.r2dbc.spi.Row
+import kotlinx.datetime.toKotlinInstant
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitSingleOrNull
+import java.time.Instant
 import java.util.UUID
 class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
     override suspend fun findById(id: MatchId): Match? =
@@ -22,10 +24,15 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
 
     private fun Row.toMatch() = Match(
         id = this.get<UUID>("id").toMatchId(),
-        name = this.get<String>("name"),
+        title = this.get<String>("title"),
+        subtitle = this.get<String>("subtitle"),
+        description = this.get<String>("description"),
+        date = this.get<Instant>("date").toKotlinInstant(),
         geolocation = Match.Geolocation(
             latitude = this.get<Long>("latitude"),
             longitude = this.get<Long>("longitude"),
-        )
+        ),
+        bannerUrl = this.get<String>("banner_url"),
+        stadiumUrl = this.get<String>("stadium_url"),
     )
 }

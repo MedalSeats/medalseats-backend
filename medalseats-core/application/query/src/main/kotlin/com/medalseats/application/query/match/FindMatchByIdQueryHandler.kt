@@ -15,5 +15,15 @@ class FindMatchByIdQueryHandler(
 
     private fun Match.toMatch() = FindMatchByIdQueryProjection.Match(
         id = id.toUUID(),
+        title = title,
+        subtitle = subtitle,
+        description = description,
+        stadiumUrl = stadiumUrl,
+        bannerUrl = bannerUrl,
+        date = date,
+        geolocation = FindMatchByIdQueryProjection.Geolocation(
+            latitude = geolocation.latitude,
+            longitude = geolocation.longitude
+        )
     )
 }
