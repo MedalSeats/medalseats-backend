@@ -9,6 +9,7 @@ import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
 import com.medalseats.adapter.r2dbc.account.AccountR2dbcRepository
 import com.medalseats.adapter.r2dbc.match.MatchR2dbcRepository
 import com.medalseats.application.command.account.CreateAccountCommandHandler
+import com.medalseats.application.query.match.FindAllMatchesQueryHandler
 import com.medalseats.application.query.match.FindMatchByIdQueryHandler
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils
@@ -55,6 +56,7 @@ fun beans(context: GenericApplicationContext) = beans {
 
     // Query handlers
     bean<FindMatchByIdQueryHandler>()
+    bean<FindAllMatchesQueryHandler>()
 
     // Command handlers
     bean<CreateAccountCommandHandler>()

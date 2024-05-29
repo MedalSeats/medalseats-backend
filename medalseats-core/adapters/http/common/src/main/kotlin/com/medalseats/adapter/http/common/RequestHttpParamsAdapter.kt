@@ -6,7 +6,7 @@ import org.springframework.web.reactive.function.server.queryParamOrNull
 const val DEFAULT_OFFSET = 0
 const val DEFAULT_LIMIT = 10
 
-internal class RequestHttpParamsAdapter(private val req: ServerRequest) {
+class RequestHttpParamsAdapter(private val req: ServerRequest) {
 
     val offset by lazy {
         req.queryParamOrNull("offset")?.toInt() ?: DEFAULT_OFFSET

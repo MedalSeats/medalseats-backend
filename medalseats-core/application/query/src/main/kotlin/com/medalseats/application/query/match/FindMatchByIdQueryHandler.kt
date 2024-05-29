@@ -3,6 +3,7 @@ package com.medalseats.application.query.match
 import com.unicamp.medalseats.match.Match
 import com.unicamp.medalseats.match.MatchRepository
 import com.unicamp.medalseats.match.toMatchId
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 class FindMatchByIdQueryHandler(
@@ -33,7 +34,7 @@ class FindMatchByIdQueryHandler(
         availableTickets = availableTickets.toProjection()
     )
 
-    private fun List<Match.Ticket>.toProjection(): List<FindMatchByIdQueryProjection.Match.Ticket> =
+    private fun ImmutableList<Match.Ticket>.toProjection(): ImmutableList<FindMatchByIdQueryProjection.Match.Ticket> =
         this.map { it.toProjection() }.toImmutableList()
 
     private fun Match.Ticket.toProjection() = FindMatchByIdQueryProjection.Match.Ticket(

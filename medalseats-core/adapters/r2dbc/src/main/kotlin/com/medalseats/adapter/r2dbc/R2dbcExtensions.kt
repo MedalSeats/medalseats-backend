@@ -11,7 +11,7 @@ inline fun <reified T> Readable.getOrNull(identifier: String) = this.get(identif
 public fun String.where(sql: String?) =
     sql?.let { "${this.trimEnd()} $sql" } ?: this
 
-fun String.orderBy(sql: String?) =
+public fun String.orderBy(sql: String?) =
     sql?.let { "${this.trimEnd()} $sql" } ?: this
 
 inline fun <reified T> DatabaseClient.GenericExecuteSpec.bindIfNotNull(name: String, value: T?) =
