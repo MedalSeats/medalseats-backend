@@ -1,4 +1,4 @@
-package com.medalseats.adapter.http.query
+package com.medalseats.adapter.http.common
 
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.queryParamOrNull

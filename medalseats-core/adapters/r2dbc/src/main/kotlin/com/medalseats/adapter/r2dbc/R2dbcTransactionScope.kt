@@ -1,6 +1,6 @@
 package com.medalseats.adapter.r2dbc
 
-import com.unicamp.medalseats.config.TransactionScope
+import com.unicamp.medalseats.TransactionScope
 import org.springframework.transaction.reactive.TransactionalOperator
 import org.springframework.transaction.reactive.executeAndAwait
 

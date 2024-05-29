@@ -1,8 +1,8 @@
-package com.medalseats.adapter.http.common
+package com.medalseats.adapter.http.common.error
 
-import com.medalseats.adapter.http.common.ErrorCode.MDS_000
-import com.medalseats.adapter.http.common.ErrorCode.MDS_001
-import com.medalseats.adapter.http.common.ErrorCode.MDS_002
+import com.medalseats.adapter.http.common.error.ErrorCode.MDS_000
+import com.medalseats.adapter.http.common.error.ErrorCode.MDS_001
+import com.medalseats.adapter.http.common.error.ErrorCode.MDS_002
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
