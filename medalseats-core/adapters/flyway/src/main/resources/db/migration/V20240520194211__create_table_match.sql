@@ -7,5 +7,7 @@ CREATE TABLE match(
     latitude               DECIMAL NOT NULL,
     longitude              DECIMAL NOT NULL,
     banner_url             text NOT NULL,
-    stadium_url            text NOT NULL
+    stadium_url            text NOT NULL,
+    stadium_name           text NOT NULL,
+    icon_url               text NOT NULL
 );

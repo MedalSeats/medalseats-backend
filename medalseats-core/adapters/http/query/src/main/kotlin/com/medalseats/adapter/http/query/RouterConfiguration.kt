@@ -10,7 +10,7 @@ fun router(
     matchHttpHandler: MatchHttpHandler,
 ) = coRouter {
     accept(MediaType.APPLICATION_JSON).nest {
-        "/matches".nest {
+        "/match".nest {
             GET(pattern = "/{matchId:$UUID_REGEX}") { req ->
                 matchHttpHandler.findMatchById(req)
             }
