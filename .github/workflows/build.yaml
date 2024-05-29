@@ -64,7 +64,7 @@ jobs:
 
       - name: Test with Gradle
         env:
-          DB_URL: jdbc:postgresql://localhost:5432/mydatabase
-          DB_USERNAME: myuser
-          DB_PASSWORD: mypassword
+          DB_URL: jdbc:postgresql://localhost:5432/medalseats
+          DB_USERNAME: medalseats
+          DB_PASSWORD: medalseats
         run: ./gradlew test -p ./medalseats-deployments/medalseats-management
