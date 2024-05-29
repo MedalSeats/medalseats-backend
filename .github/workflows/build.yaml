@@ -18,7 +18,7 @@ jobs:
           POSTGRES_USER: medalseats
           POSTGRES_PASSWORD: medalseats
         options: >-
-          --health-cmd "pg_isready -U myuser"
+          --health-cmd "pg_isready -U medalseats"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
