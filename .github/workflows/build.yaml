@@ -14,9 +14,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: mydatabase
-          POSTGRES_USER: myuser
-          POSTGRES_PASSWORD: mypassword
+          POSTGRES_DB: medalseats
+          POSTGRES_USER: medalseats
+          POSTGRES_PASSWORD: medalseats
         options: >-
           --health-cmd "pg_isready -U myuser"
           --health-interval 10s
@@ -48,15 +48,15 @@ jobs:
       - name: Wait for PostgreSQL
         run: |
           echo "Waiting for PostgreSQL to be ready..."
-          while ! pg_isready -h localhost -p 5432 -U myuser; do
+          while ! pg_isready -h localhost -p 5432 -U medalseats; do
             sleep 1
           done
 
       - name: Flyway Migrate
         env:
-          DB_URL: jdbc:postgresql://localhost:5432/mydatabase
-          DB_USERNAME: myuser
-          DB_PASSWORD: mypassword
+          DB_URL: jdbc:postgresql://localhost:5432/medalseats
+          DB_USERNAME: medalseats
+          DB_PASSWORD: medalseats
         run: ./gradlew flywayMigrate -p ./medalseats-deployments/medalseats-management
 
       - name: Build with Gradle
