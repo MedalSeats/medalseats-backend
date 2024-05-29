@@ -22,5 +22,4 @@ object MatchSqlQueries : DefaultSqlQueries() {
                 AND id = :id
             """
         }
-
 }

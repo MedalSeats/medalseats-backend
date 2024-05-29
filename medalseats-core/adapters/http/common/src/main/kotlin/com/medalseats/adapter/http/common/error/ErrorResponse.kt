@@ -1,4 +1,4 @@
-package com.medalseats.adapter.http.common
+package com.medalseats.adapter.http.common.error
 
 import kotlinx.serialization.Serializable
 

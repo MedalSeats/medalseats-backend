@@ -1,0 +1,70 @@
+name: Build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: medalseats
+          POSTGRES_USER: medalseats
+          POSTGRES_PASSWORD: medalseats
+        options: >-
+          --health-cmd "pg_isready -U medalseats"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Wait for PostgreSQL
+        run: |
+          echo "Waiting for PostgreSQL to be ready..."
+          while ! pg_isready -h localhost -p 5432 -U medalseats; do
+            sleep 1
+          done
+
+      - name: Flyway Migrate
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/medalseats
+          DB_USERNAME: medalseats
+          DB_PASSWORD: medalseats
+        run: ./gradlew flywayMigrate
+
+      - name: Build with Gradle
+        run: ./gradlew build -p ./medalseats-deployments/medalseats-management
+
+      - name: Test with Gradle
+        env:
+          DB_URL: jdbc:postgresql://localhost:5432/medalseats
+          DB_USERNAME: medalseats
+          DB_PASSWORD: medalseats
+        run: ./gradlew test -p ./medalseats-deployments/medalseats-management

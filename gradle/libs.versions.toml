@@ -25,6 +25,7 @@ log4j = "2.19.0"
 micrometer = "1.11.2"
 mockk = "1.13.5"
 moneta = "1.4.2"
+bouncycastle = "1.70"
 netty = "4.1.100.Final"
 reactor-netty = "1.0.32"
 resilience4j = "2.1.0"
@@ -89,6 +90,9 @@ spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-s
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-boot-starter-log4j2 = { module = "org.springframework.boot:spring-boot-starter-log4j2" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+spring-security-crypto = { module = "org.springframework.security:spring-security-crypto" }
+bcprov-jdk15on = { module = "org.bouncycastle:bcprov-jdk15on", version.ref = "bouncycastle"}
 
 micrometer-core = { module = "io.micrometer:micrometer-core", version.ref = "micrometer" }
 micrometer-registry-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }

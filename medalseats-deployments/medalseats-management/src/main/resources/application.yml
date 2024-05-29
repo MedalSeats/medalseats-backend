@@ -55,3 +55,11 @@ logging:
     root: INFO
     org.javamoney.moneta: WARN
   config: "classpath:${LOGGING_CONFIG_FILE:log4j2.xml}"
+
+medalseats:
+  password-encoder:
+    salt-length: 16
+    hash-length: 32
+    parallelism: 1
+    memory: 60000
+    iterations: 10

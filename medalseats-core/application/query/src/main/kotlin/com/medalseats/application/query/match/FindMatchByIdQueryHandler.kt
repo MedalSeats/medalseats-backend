@@ -5,7 +5,7 @@ import com.unicamp.medalseats.match.MatchRepository
 import com.unicamp.medalseats.match.toMatchId
 
 class FindMatchByIdQueryHandler(
-    private val matchRepository: MatchRepository,
+    private val matchRepository: MatchRepository
 ) {
 
     suspend fun handle(query: FindMatchByIdQuery): FindMatchByIdQueryProjection =
@@ -14,6 +14,6 @@ class FindMatchByIdQueryHandler(
         )
 
     private fun Match.toMatch() = FindMatchByIdQueryProjection.Match(
-        id = id.toUUID(),
+        id = id.toUUID()
     )
 }

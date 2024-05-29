@@ -1,4 +1,4 @@
-package com.unicamp.medalseats.config
+package com.unicamp.medalseats
 
 interface TransactionScope {
 

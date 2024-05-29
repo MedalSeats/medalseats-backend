@@ -19,13 +19,17 @@ dependencies {
     implementation(libs.spring.boot.starter.data.r2dbc)
     implementation(libs.spring.boot.starter.log4j2)
     implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.spring.security.crypto)
 
     implementation(projects.medalseatsCore.domain)
     implementation(projects.medalseatsCore.adapters.flyway)
+    implementation(projects.medalseatsCore.adapters.cryptography)
     implementation(projects.medalseatsCore.adapters.http.common)
     implementation(projects.medalseatsCore.adapters.http.query)
+    implementation(projects.medalseatsCore.adapters.http.command)
     implementation(projects.medalseatsCore.adapters.r2dbc)
     implementation(projects.medalseatsCore.application.query)
+    implementation(projects.medalseatsCore.application.command)
 
     runtimeOnly(libs.micrometer.registry.prometheus)
     runtimeOnly(libs.disruptor)
