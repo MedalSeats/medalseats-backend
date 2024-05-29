@@ -57,7 +57,7 @@ jobs:
           DB_URL: jdbc:postgresql://localhost:5432/medalseats
           DB_USERNAME: medalseats
           DB_PASSWORD: medalseats
-        run: ./gradlew flywayMigrate -p ./medalseats-deployments/medalseats-management
+        run: ./gradlew flywayMigrate
 
       - name: Build with Gradle
         run: ./gradlew build -p ./medalseats-deployments/medalseats-management
