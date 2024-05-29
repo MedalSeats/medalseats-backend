@@ -46,5 +46,4 @@ object MatchSqlQueries : DefaultSqlQueries() {
                 AND match_id = :matchId
             """
         }
-
 }

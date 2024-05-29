@@ -12,7 +12,6 @@ import com.unicamp.medalseats.match.MatchRepository
 import com.unicamp.medalseats.match.toMatchId
 import com.unicamp.medalseats.withCurrency
 import io.r2dbc.spi.Row
-import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.toKotlinInstant
 import org.springframework.r2dbc.core.DatabaseClient
@@ -21,7 +20,6 @@ import org.springframework.r2dbc.core.flow
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
-import javax.money.MonetaryAmount
 
 class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
     override suspend fun findById(id: MatchId): Match? {
@@ -38,7 +36,6 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
         )
     }
 
-
     private fun Row.toMatch() = Match(
         id = this.get<UUID>("id").toMatchId(),
         title = this.get<String>("title"),
@@ -47,19 +44,19 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
         date = this.get<Instant>("date").toKotlinInstant(),
         geolocation = Match.Geolocation(
             latitude = this.get<Long>("latitude"),
-            longitude = this.get<Long>("longitude"),
+            longitude = this.get<Long>("longitude")
         ),
         bannerUrl = this.get<String>("banner_url"),
         stadium = Match.Stadium(
             name = this.get<String>("stadium_name"),
-            imageUrl = this.get<String>("stadium_url"),
+            imageUrl = this.get<String>("stadium_url")
         ),
         iconUrl = this.get<String>("icon_url"),
         availableTickets = emptyList()
     )
 
     private suspend fun findAvailableTickets(
-        matchId: MatchId,
+        matchId: MatchId
     ) = db.sql(
         selectTickets()
             .where(whereMatchId(matchId))
@@ -73,5 +70,4 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
         category = this.get<String>("category"),
         price = this.get<BigDecimal>("amount") withCurrency this.get<String>("currency")
     )
-
 }

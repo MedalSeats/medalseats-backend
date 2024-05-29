@@ -1,7 +1,5 @@
 package com.unicamp.medalseats.payment
 
-import com.unicamp.medalseats.payment.PaymentId
-import com.unicamp.medalseats.payment.toPaymentId
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every

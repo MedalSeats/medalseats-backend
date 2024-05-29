@@ -1,7 +1,6 @@
 package com.medalseats.adapter.r2dbc
 
 import io.r2dbc.spi.Readable
-import io.r2dbc.spi.Row
 import org.springframework.r2dbc.core.DatabaseClient
 
 @Suppress("EXTENSION_SHADOWED_BY_MEMBER")

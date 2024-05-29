@@ -4,9 +4,6 @@ import com.unicamp.medalseats.CryptographyService
 import com.unicamp.medalseats.account.Account
 import com.unicamp.medalseats.account.AccountRepository
 import com.unicamp.medalseats.account.exception.AccountException
-import com.unicamp.medalseats.match.Match
-import com.unicamp.medalseats.match.MatchRepository
-import com.unicamp.medalseats.match.toMatchId
 
 class CreateAccountCommandHandler(
     private val accountRepository: AccountRepository,
@@ -23,7 +20,7 @@ class CreateAccountCommandHandler(
             password = cryptographyService.encrypt(command.password)
         )
 
-        accountRepository.register(account);
+        accountRepository.register(account)
     }
 
     private suspend fun validateCommand(command: CreateAccountCommand): Unit =
@@ -32,5 +29,4 @@ class CreateAccountCommandHandler(
                 throw AccountException.AccountConflictException(aggregateId)
             }
         }
-
 }

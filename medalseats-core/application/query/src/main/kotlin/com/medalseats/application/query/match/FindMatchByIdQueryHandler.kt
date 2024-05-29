@@ -6,7 +6,7 @@ import com.unicamp.medalseats.match.toMatchId
 import kotlinx.collections.immutable.toImmutableList
 
 class FindMatchByIdQueryHandler(
-    private val matchRepository: MatchRepository,
+    private val matchRepository: MatchRepository
 ) {
 
     suspend fun handle(query: FindMatchByIdQuery): FindMatchByIdQueryProjection =
@@ -21,7 +21,7 @@ class FindMatchByIdQueryHandler(
         description = description,
         stadium = FindMatchByIdQueryProjection.Match.Stadium(
             name = stadium.name,
-            imageUrl = stadium.imageUrl,
+            imageUrl = stadium.imageUrl
         ),
         bannerUrl = bannerUrl,
         date = date,

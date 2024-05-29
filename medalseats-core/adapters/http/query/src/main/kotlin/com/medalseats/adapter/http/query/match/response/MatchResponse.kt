@@ -4,9 +4,7 @@ import com.medalseats.adapter.http.common.response.MonetaryAmountResponse
 import com.medalseats.application.query.match.FindMatchByIdQueryProjection
 import com.unicamp.medalseats.toBigDecimal
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import java.util.UUID
 
 @Serializable
 data class MatchResponse(
@@ -21,7 +19,6 @@ data class MatchResponse(
     val iconUrl: String,
     val availableTickets: List<TicketResponse>
 ) {
-
 
     @Serializable
     data class GeolocationResponse(
