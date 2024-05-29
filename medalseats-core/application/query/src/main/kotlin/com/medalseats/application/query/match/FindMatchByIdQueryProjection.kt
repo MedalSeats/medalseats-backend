@@ -7,6 +7,6 @@ data class FindMatchByIdQueryProjection(
 ) {
 
     data class Match(
-        val id: UUID,
+        val id: UUID
     )
 }

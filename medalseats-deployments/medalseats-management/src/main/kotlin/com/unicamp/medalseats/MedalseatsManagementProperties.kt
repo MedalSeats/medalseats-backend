@@ -5,5 +5,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "medalseats", ignoreUnknownFields = true)
 data class MedalseatsManagementProperties(
-   val passwordEncoder: PasswordEncoderConfiguration
+    val passwordEncoder: PasswordEncoderConfiguration
 )

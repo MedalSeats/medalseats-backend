@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MatchResponse(
-    val id: String,
+    val id: String
 )
 
 fun FindMatchByIdQueryProjection.toMatchResponse(): MatchResponse? =
     this.match?.let { match ->
         with(match) {
             MatchResponse(
-                id = id.toString(),
+                id = id.toString()
             )
         }
     }

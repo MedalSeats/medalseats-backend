@@ -24,7 +24,6 @@ class AccountR2dbcRepository(private val db: DatabaseClient) : AccountRepository
                 row.toAccount()
             }.awaitSingleOrNull()
 
-
     override suspend fun register(account: Account) =
         db.sql(insertAccount())
             .bind("id", account.id.toUUID())
@@ -39,6 +38,6 @@ class AccountR2dbcRepository(private val db: DatabaseClient) : AccountRepository
         name = this.get<String>("name"),
         email = this.get<String>("email"),
         birthday = this.get<Instant>("birthday"),
-        password = this.get<String>("password"),
+        password = this.get<String>("password")
     )
 }

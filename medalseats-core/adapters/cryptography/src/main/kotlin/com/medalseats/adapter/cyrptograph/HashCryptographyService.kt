@@ -12,7 +12,7 @@ data class HashCryptographyService(
         passwordEncoderConfiguration.hashLength,
         passwordEncoderConfiguration.parallelism,
         passwordEncoderConfiguration.memory,
-        passwordEncoderConfiguration.iterations,
+        passwordEncoderConfiguration.iterations
     )
 
     override suspend fun encrypt(plainText: String): String {
