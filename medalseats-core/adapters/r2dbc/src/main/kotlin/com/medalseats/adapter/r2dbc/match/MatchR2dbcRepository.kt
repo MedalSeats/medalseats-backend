@@ -60,7 +60,7 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
     ) = db.sql(
         selectTickets()
             .where(whereMatchId(matchId))
-    )
+        )
         .bind("matchId", matchId.toUUID())
         .map { row, _ ->
             row.toTicket()
