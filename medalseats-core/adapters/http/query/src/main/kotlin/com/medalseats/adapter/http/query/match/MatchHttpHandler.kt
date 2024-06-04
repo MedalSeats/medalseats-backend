@@ -15,7 +15,7 @@ import java.util.UUID
 
 class MatchHttpHandler(
     private val findMatchByIdQueryHandler: FindMatchByIdQueryHandler,
-    private val findAllMatchesQueryHandler: FindAllMatchesQueryHandler,
+    private val findAllMatchesQueryHandler: FindAllMatchesQueryHandler
 ) {
     suspend fun findMatchById(req: ServerRequest): ServerResponse {
         val response = with(UUID.fromString(req.pathVariable("matchId"))) {

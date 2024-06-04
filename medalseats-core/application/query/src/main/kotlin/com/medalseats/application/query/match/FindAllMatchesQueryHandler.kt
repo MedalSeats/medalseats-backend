@@ -6,7 +6,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 class FindAllMatchesQueryHandler(
-    private val matchRepository: MatchRepository,
+    private val matchRepository: MatchRepository
 ) {
 
     suspend fun handle(query: FindAllMatchesQuery) =

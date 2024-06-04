@@ -5,7 +5,6 @@ import com.medalseats.application.query.match.FindAllMatchesQueryProjection
 import com.medalseats.application.query.match.FindMatchByIdQueryProjection
 import com.unicamp.medalseats.toBigDecimal
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.serialization.Serializable
 
