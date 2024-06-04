@@ -1,9 +1,11 @@
 package com.medalseats.adapter.http.query.match.response
 
 import com.medalseats.adapter.http.common.response.MonetaryAmountResponse
+import com.medalseats.application.query.match.FindAllMatchesQueryProjection
 import com.medalseats.application.query.match.FindMatchByIdQueryProjection
 import com.unicamp.medalseats.toBigDecimal
-import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -17,7 +19,7 @@ data class MatchResponse(
     val bannerUrl: String,
     val stadium: StadiumResponse,
     val iconUrl: String,
-    val availableTickets: List<TicketResponse>
+    val availableTickets: ImmutableList<TicketResponse>
 ) {
 
     @Serializable
@@ -58,19 +60,47 @@ fun FindMatchByIdQueryProjection.toMatchResponse(): MatchResponse? =
                     longitude = geolocation.longitude
                 ),
                 iconUrl = iconUrl,
-                availableTickets = availableTickets.toResponse()
+                availableTickets = availableTickets.map { ticket ->
+                    MatchResponse.TicketResponse(
+                        category = ticket.category,
+                        price = MonetaryAmountResponse(
+                            value = ticket.price.toBigDecimal().toDouble(),
+                            currency = ticket.price.currency.currencyCode
+                        )
+                    )
+                }.toPersistentList()
             )
         }
     }
 
-fun List<FindMatchByIdQueryProjection.Match.Ticket>.toResponse() =
-    this.map { it.toResponse() }.toImmutableList()
-
-fun FindMatchByIdQueryProjection.Match.Ticket.toResponse() =
-    MatchResponse.TicketResponse(
-        category = this.category,
-        price = MonetaryAmountResponse(
-            value = this.price.toBigDecimal().toDouble(),
-            currency = this.price.currency.currencyCode
-        )
-    )
+fun FindAllMatchesQueryProjection.toMatchResponse(): ImmutableList<MatchResponse> =
+    this.matches.map {
+        with(it) {
+            MatchResponse(
+                id = id.toString(),
+                title = title,
+                subtitle = subtitle,
+                description = description,
+                stadium = MatchResponse.StadiumResponse(
+                    name = stadium.name,
+                    imageUrl = stadium.imageUrl
+                ),
+                bannerUrl = bannerUrl,
+                date = date.toEpochMilliseconds(),
+                geolocation = MatchResponse.GeolocationResponse(
+                    latitude = geolocation.latitude,
+                    longitude = geolocation.longitude
+                ),
+                iconUrl = iconUrl,
+                availableTickets = availableTickets.map { ticket ->
+                    MatchResponse.TicketResponse(
+                        category = ticket.category,
+                        price = MonetaryAmountResponse(
+                            value = ticket.price.toBigDecimal().toDouble(),
+                            currency = ticket.price.currency.currencyCode
+                        )
+                    )
+                }.toPersistentList()
+            )
+        }
+    }.toPersistentList()

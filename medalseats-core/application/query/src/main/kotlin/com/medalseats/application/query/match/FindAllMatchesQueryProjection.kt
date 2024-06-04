@@ -5,8 +5,8 @@ import kotlinx.datetime.Instant
 import java.util.UUID
 import javax.money.MonetaryAmount
 
-data class FindMatchByIdQueryProjection(
-    val match: Match?
+data class FindAllMatchesQueryProjection(
+    val matches: ImmutableList<Match>
 ) {
 
     data class Match(

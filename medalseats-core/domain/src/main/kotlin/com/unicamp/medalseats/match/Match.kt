@@ -1,5 +1,6 @@
 package com.unicamp.medalseats.match
 
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.datetime.Instant
 import javax.money.MonetaryAmount
 
@@ -13,7 +14,7 @@ data class Match(
     val bannerUrl: String,
     val stadium: Stadium,
     val iconUrl: String,
-    val availableTickets: List<Ticket>
+    val availableTickets: ImmutableList<Ticket>
 ) {
 
     data class Stadium(
