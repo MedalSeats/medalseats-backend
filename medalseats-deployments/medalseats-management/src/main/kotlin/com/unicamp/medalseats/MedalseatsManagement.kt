@@ -1,9 +1,9 @@
 package com.unicamp.medalseats
 
+import CorsConfiguration
 import com.medalseats.adapter.cyrptograph.HashCryptographyService
 import com.medalseats.adapter.http.command.account.AccountHttpHandler
 import com.medalseats.adapter.http.command.routerManagement
-import com.medalseats.adapter.http.common.CorsFilter
 import com.medalseats.adapter.http.query.match.MatchHttpHandler
 import com.medalseats.adapter.http.query.router
 import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
@@ -66,7 +66,7 @@ fun beans(context: GenericApplicationContext) = beans {
     bean<R2dbcTransactionScope>()
 
     // Cors filter
-    bean<CorsFilter>()
+    bean<CorsConfiguration>()
 }
 
 fun <T : Any> BeanDefinitionDsl.bean(context: GenericApplicationContext, type: KClass<T>) {
@@ -76,12 +76,13 @@ fun <T : Any> BeanDefinitionDsl.bean(context: GenericApplicationContext, type: K
         BeanDefinitionCustomizer {}
     )
 }
-
+@SpringBootApplication
+@ConfigurationPropertiesScan
 class MedalseatsManagementInitializer : ApplicationContextInitializer<GenericApplicationContext> {
     override fun initialize(context: GenericApplicationContext) = beans(context).initialize(context)
 }
 
 fun main(args: Array<String>) {
     Locale.setDefault(Locale("pt", "BR"))
-    runApplication<MedalseatsManagement>(*args)
+    runApplication<MedalseatsManagementInitializer>(*args)
 }
