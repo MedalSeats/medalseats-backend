@@ -90,11 +90,9 @@ class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
     )
         .bind("matchId", matchId.toUUID())
         .map { row, _ ->
-            row.toTicket()
+            Match.Ticket(
+                category = row.get<String>("category"),
+                price = row.get<BigDecimal>("amount") withCurrency row.get<String>("currency")
+            )
         }.flow().toList()
-
-    private fun Row.toTicket() = Match.Ticket(
-        category = this.get<String>("category"),
-        price = this.get<BigDecimal>("amount") withCurrency this.get<String>("currency")
-    )
 }
