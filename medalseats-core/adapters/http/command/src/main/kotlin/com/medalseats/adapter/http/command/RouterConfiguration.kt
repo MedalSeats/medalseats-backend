@@ -14,6 +14,9 @@ fun routerManagement(
             POST("") { req ->
                 accountHttpHandler.createAccount(req)
             }
+            POST("/sign-in") { req ->
+                accountHttpHandler.signInAccount(req)
+            }
         }
     }
 }
