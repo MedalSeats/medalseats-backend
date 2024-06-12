@@ -2,6 +2,7 @@ package com.unicamp.medalseats
 
 import com.medalseats.adapter.cyrptograph.HashCryptographyService
 import com.medalseats.adapter.http.command.account.AccountHttpHandler
+import com.medalseats.adapter.http.command.payment.PaymentHttpHandler
 import com.medalseats.adapter.http.command.routerManagement
 import com.medalseats.adapter.http.common.CorsConfiguration
 import com.medalseats.adapter.http.query.match.MatchHttpHandler
@@ -54,6 +55,7 @@ fun beans(context: GenericApplicationContext) = beans {
     // HTTP handlers
     bean<MatchHttpHandler>()
     bean<AccountHttpHandler>()
+    bean<PaymentHttpHandler>()
 
     // Query handlers
     bean<FindMatchByIdQueryHandler>()

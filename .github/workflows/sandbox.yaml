@@ -68,3 +68,11 @@ jobs:
           DB_USERNAME: medalseats
           DB_PASSWORD: medalseats
         run: ./gradlew test -p ./medalseats-deployments/medalseats-management
+
+      - run:
+        name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "medalseats" #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
