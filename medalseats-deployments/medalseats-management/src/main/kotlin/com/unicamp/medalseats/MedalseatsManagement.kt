@@ -3,6 +3,7 @@ package com.unicamp.medalseats
 import com.medalseats.adapter.cyrptograph.HashCryptographyService
 import com.medalseats.adapter.http.command.account.AccountHttpHandler
 import com.medalseats.adapter.http.command.routerManagement
+import com.medalseats.adapter.http.common.CorsConfiguration
 import com.medalseats.adapter.http.query.match.MatchHttpHandler
 import com.medalseats.adapter.http.query.router
 import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
@@ -63,6 +64,9 @@ fun beans(context: GenericApplicationContext) = beans {
 
     // Transaction scope
     bean<R2dbcTransactionScope>()
+
+    // Cors filter
+    bean<CorsConfiguration>()
 }
 
 fun <T : Any> BeanDefinitionDsl.bean(context: GenericApplicationContext, type: KClass<T>) {
