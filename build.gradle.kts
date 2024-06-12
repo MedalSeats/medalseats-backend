@@ -18,11 +18,6 @@ val Project.fullName: String get() = (parent?.fullName?.plus("-") ?: "") + name
 
 
 tasks {
-	compileJava {
-		sourceCompatibility = "1.8"
-		targetCompatibility = "1.8"
-	}
-
 	register<JacoboTask>("jacobo") {
 		jacocoReport = file("$buildDir/reports/jacoco/jacocoAggregatedReport/jacocoAggregatedReport.xml")
 		coberturaReport = file("$buildDir/reports/cobertura/cobertura.xml")
