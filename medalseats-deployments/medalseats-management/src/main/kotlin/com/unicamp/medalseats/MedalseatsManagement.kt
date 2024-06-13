@@ -10,6 +10,7 @@ import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
 import com.medalseats.adapter.r2dbc.account.AccountR2dbcRepository
 import com.medalseats.adapter.r2dbc.match.MatchR2dbcRepository
 import com.medalseats.application.command.account.CreateAccountCommandHandler
+import com.medalseats.application.command.account.SignInAccountCommandHandler
 import com.medalseats.application.query.match.FindAllMatchesQueryHandler
 import com.medalseats.application.query.match.FindMatchByIdQueryHandler
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer
@@ -44,7 +45,7 @@ fun beans(context: GenericApplicationContext) = beans {
     bean<MatchR2dbcRepository>()
     bean<AccountR2dbcRepository>()
 
-    // Cyrptography
+    // Cryptography
     bean {
         HashCryptographyService(
             ref<MedalseatsManagementProperties>().passwordEncoder
@@ -61,6 +62,7 @@ fun beans(context: GenericApplicationContext) = beans {
 
     // Command handlers
     bean<CreateAccountCommandHandler>()
+    bean<SignInAccountCommandHandler>()
 
     // Transaction scope
     bean<R2dbcTransactionScope>()

@@ -15,4 +15,10 @@ open class AccountException(message: String) : Exception(message) {
     ) : AccountException(
         "Account $id not found"
     )
+
+    class AccountEmailNotFoundException(
+        val email: String
+    ) : AccountException(
+        "Account $email email not found"
+    )
 }
