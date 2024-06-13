@@ -34,7 +34,8 @@ class MatchHttpHandler(
         val response = with(RequestHttpParamsAdapter(req)) {
             val query = FindAllMatchesQuery(
                 offset = offset,
-                limit = limit
+                limit = limit,
+                term = req.queryParam("term").orElse(null)
             )
 
             findAllMatchesQueryHandler.handle(query).toMatchResponse()
