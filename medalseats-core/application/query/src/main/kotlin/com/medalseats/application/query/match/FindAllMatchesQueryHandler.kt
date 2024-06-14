@@ -13,6 +13,7 @@ class FindAllMatchesQueryHandler(
         FindAllMatchesQueryProjection(
             with(query) {
                 matchRepository.findAll(
+                    term = term,
                     offset = offset,
                     limit = limit
                 )

@@ -9,6 +9,7 @@ import com.medalseats.adapter.r2dbc.match.queries.MatchSqlQueries.selectTickets
 import com.medalseats.adapter.r2dbc.match.queries.MatchSqlQueries.sortingBy
 import com.medalseats.adapter.r2dbc.match.queries.MatchSqlQueries.whereId
 import com.medalseats.adapter.r2dbc.match.queries.MatchSqlQueries.whereMatchId
+import com.medalseats.adapter.r2dbc.match.queries.MatchSqlQueries.whereTerm
 import com.medalseats.adapter.r2dbc.orderBy
 import com.medalseats.adapter.r2dbc.where
 import com.unicamp.medalseats.match.Match
@@ -30,15 +31,17 @@ import java.time.Instant
 import java.util.UUID
 
 class MatchR2dbcRepository(private val db: DatabaseClient) : MatchRepository {
-    override suspend fun findAll(offset: Int, limit: Int) =
+    override suspend fun findAll(term: String?, offset: Int, limit: Int) =
         db.sql(
             selectMatch()
+                .where(whereTerm(term))
                 .orderBy(sortingBy("date"))
                 .where(limit(limit))
                 .where(offset(offset))
         )
             .bindIfNotNull("offset", offset)
             .bindIfNotNull("limit", limit)
+            .bindIfNotNull("term", term)
             .map { row, _ ->
                 row.toMatch()
             }.flow().map { match ->

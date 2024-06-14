@@ -46,4 +46,15 @@ object MatchSqlQueries : DefaultSqlQueries() {
                 AND match_id = :matchId
             """
         }
+
+    fun whereTerm(term: String?) =
+        term?.let {
+            """ 
+                AND (
+                    title ILIKE '%' || :term || '%'
+                    OR subtitle ILIKE '%' || :term || '%'
+                    OR description ILIKE '%' || :term || '%'
+                )
+            """
+        }
 }
