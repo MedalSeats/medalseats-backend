@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "a86bfea9-494d-4efe-8610-ec67f50298e8",
+		"name": "Medalseats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14240513"
+	},
+	"item": [
+		{
+			"name": "register account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Guilherme Costa\",\n    \"email\": \"guilhermecosta@gmail.com\",\n    \"password\": \"senha123\",\n    \"birthday\": 907266986\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"guilhermecosta@gmail.com\",\n    \"password\": \"senha123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/account/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find all matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/match?offset=0&limit=10&term=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"match"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "term",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find match by id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/match/b532555d-a574-4fbb-92b2-304c28a8dec4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"match",
+						"b532555d-a574-4fbb-92b2-304c28a8dec4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find payments by email",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "authorize",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"guilhermecosta@gmail.com\",\n    \"matchId\": \"b532555d-a574-4fbb-92b2-304c28a8dec4\",\n    \"amount\": {\n        \"value\": 13.4,\n        \"currency\": \"BRL\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/payment/authorize",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payment",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "capture",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/payment/7c69e8b7-d9f7-4887-b7fb-56491f0208cb/capture",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payment",
+						"7c69e8b7-d9f7-4887-b7fb-56491f0208cb",
+						"capture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refund",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/payment/7c69e8b7-d9f7-4887-b7fb-56491f0208cb/refund",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payment",
+						"7c69e8b7-d9f7-4887-b7fb-56491f0208cb",
+						"refund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "expire",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/payment/7c69e8b7-d9f7-4887-b7fb-56491f0208cb/expire",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payment",
+						"7c69e8b7-d9f7-4887-b7fb-56491f0208cb",
+						"expire"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,7 +1,6 @@
 package com.medalseats.adapter.http.command.account.request
 
 import com.medalseats.application.command.account.SignInAccountCommand
-import com.unicamp.medalseats.account.AccountId
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable

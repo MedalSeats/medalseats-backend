@@ -2,17 +2,25 @@ package com.unicamp.medalseats
 
 import com.medalseats.adapter.cyrptograph.HashCryptographyService
 import com.medalseats.adapter.http.command.account.AccountHttpHandler
+import com.medalseats.adapter.http.command.payment.PaymentCommandHttpHandler
 import com.medalseats.adapter.http.command.routerManagement
 import com.medalseats.adapter.http.common.CorsConfiguration
 import com.medalseats.adapter.http.query.match.MatchHttpHandler
+import com.medalseats.adapter.http.query.payment.PaymentQueryHttpHandler
 import com.medalseats.adapter.http.query.router
 import com.medalseats.adapter.r2dbc.R2dbcTransactionScope
 import com.medalseats.adapter.r2dbc.account.AccountR2dbcRepository
 import com.medalseats.adapter.r2dbc.match.MatchR2dbcRepository
+import com.medalseats.adapter.r2dbc.payment.PaymentR2dbcRepository
 import com.medalseats.application.command.account.CreateAccountCommandHandler
 import com.medalseats.application.command.account.SignInAccountCommandHandler
+import com.medalseats.application.command.payment.AuthorizePaymentCommandHandler
+import com.medalseats.application.command.payment.CapturePaymentCommandHandler
+import com.medalseats.application.command.payment.ExpirePaymentCommandHandler
+import com.medalseats.application.command.payment.RefundPaymentCommandHandler
 import com.medalseats.application.query.match.FindAllMatchesQueryHandler
 import com.medalseats.application.query.match.FindMatchByIdQueryHandler
+import com.medalseats.application.query.payment.FindPaymentsByEmailQueryHandler
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -44,6 +52,7 @@ fun beans(context: GenericApplicationContext) = beans {
     // Repositories
     bean<MatchR2dbcRepository>()
     bean<AccountR2dbcRepository>()
+    bean<PaymentR2dbcRepository>()
 
     // Cryptography
     bean {
@@ -55,14 +64,21 @@ fun beans(context: GenericApplicationContext) = beans {
     // HTTP handlers
     bean<MatchHttpHandler>()
     bean<AccountHttpHandler>()
+    bean<PaymentCommandHttpHandler>()
+    bean<PaymentQueryHttpHandler>()
 
     // Query handlers
     bean<FindMatchByIdQueryHandler>()
     bean<FindAllMatchesQueryHandler>()
+    bean<FindPaymentsByEmailQueryHandler>()
 
     // Command handlers
     bean<CreateAccountCommandHandler>()
     bean<SignInAccountCommandHandler>()
+    bean<AuthorizePaymentCommandHandler>()
+    bean<CapturePaymentCommandHandler>()
+    bean<ExpirePaymentCommandHandler>()
+    bean<RefundPaymentCommandHandler>()
 
     // Transaction scope
     bean<R2dbcTransactionScope>()

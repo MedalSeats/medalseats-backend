@@ -16,6 +16,7 @@ val kotlinVersion: String by project
 val jvmVersion: String by project
 val Project.fullName: String get() = (parent?.fullName?.plus("-") ?: "") + name
 
+
 tasks {
 	register<JacoboTask>("jacobo") {
 		jacocoReport = file("$buildDir/reports/jacoco/jacocoAggregatedReport/jacocoAggregatedReport.xml")

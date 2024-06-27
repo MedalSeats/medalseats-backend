@@ -6,11 +6,10 @@ import com.medalseats.application.query.match.FindAllMatchesQuery
 import com.medalseats.application.query.match.FindAllMatchesQueryHandler
 import com.medalseats.application.query.match.FindMatchByIdQuery
 import com.medalseats.application.query.match.FindMatchByIdQueryHandler
-import com.unicamp.medalseats.match.exception.MatchException
-import com.unicamp.medalseats.match.toMatchId
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
+import org.springframework.web.reactive.function.server.buildAndAwait
 import java.util.UUID
 
 class MatchHttpHandler(
@@ -24,10 +23,9 @@ class MatchHttpHandler(
             )
 
             findMatchByIdQueryHandler.handle(query).toMatchResponse()
-                ?: throw MatchException.MatchNotFoundException(this.toMatchId())
         }
 
-        return ServerResponse.ok().bodyValueAndAwait(response)
+        return response?.let { ServerResponse.ok().bodyValueAndAwait(it) } ?: ServerResponse.notFound().buildAndAwait()
     }
 
     suspend fun findAll(req: ServerRequest): ServerResponse {
