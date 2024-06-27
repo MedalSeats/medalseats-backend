@@ -1,10 +1,12 @@
 name: Build
 on:
+  push:
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  sandbox:
+  build_and_test:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -23,12 +25,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.13.15
-        if: always()
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "medalseats-sandbox"
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
 
       - name: Cache Gradle packages
         uses: actions/cache@v2
