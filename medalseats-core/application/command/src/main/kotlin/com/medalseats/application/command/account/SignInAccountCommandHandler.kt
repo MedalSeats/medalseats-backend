@@ -9,8 +9,8 @@ class SignInAccountCommandHandler(
     private val cryptographyService: CryptographyService
 ) {
     suspend fun handle(command: SignInAccountCommand): Boolean {
-        val account = accountRepository.findByEmail(command.email) ?:
-            throw AccountException.AccountEmailNotFoundException(command.email)
+        val account = accountRepository.findByEmail(command.email)
+            ?: throw AccountException.AccountEmailNotFoundException(command.email)
         return cryptographyService.validate(
             plainText = command.password,
             cipherText = account.password

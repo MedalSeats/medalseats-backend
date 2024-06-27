@@ -7,6 +7,7 @@ include(
     "medalseats-core:adapters:r2dbc",
     "medalseats-core:adapters:flyway",
     "medalseats-core:adapters:cryptography",
+    "medalseats-core:adapters:payment-process",
     "medalseats-core:adapters:http:common",
     "medalseats-core:adapters:http:query",
     "medalseats-core:adapters:http:command",

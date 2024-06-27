@@ -66,22 +66,32 @@ class CreateAccountCommandHandlerTest : DescribeSpec({
         context("When email is unique") {
             it("Should register account successfully") {
                 coEvery { accountRepository.findByEmail(VALID_EMAIL) } returns null
-                coEvery { cryptographyService.encrypt(CreateAccountCommandHandlerTestFixture.VALID_PASSWORD) } returns "encryptedPassword"
+                coEvery {
+                    cryptographyService.encrypt(CreateAccountCommandHandlerTestFixture.VALID_PASSWORD)
+                } returns "encryptedPassword"
 
                 createAccountCommandHandler.handle(command())
 
-                coVerify { accountRepository.register(match {
-                    it.email == VALID_EMAIL &&
-                            it.password == "encryptedPassword"
-                }) }
+                coVerify {
+                    accountRepository.register(
+                        match {
+                            it.email == VALID_EMAIL &&
+                                it.password == "encryptedPassword"
+                        }
+                    )
+                }
             }
         }
 
         context("Password encryption") {
             it("Should encrypt password correctly") {
-                coEvery { cryptographyService.encrypt(CreateAccountCommandHandlerTestFixture.VALID_PASSWORD) } returns "encryptedPassword"
+                coEvery {
+                    cryptographyService.encrypt(CreateAccountCommandHandlerTestFixture.VALID_PASSWORD)
+                } returns "encryptedPassword"
 
-                val encryptedPassword = cryptographyService.encrypt(CreateAccountCommandHandlerTestFixture.VALID_PASSWORD)
+                val encryptedPassword = cryptographyService.encrypt(
+                    CreateAccountCommandHandlerTestFixture.VALID_PASSWORD
+                )
 
                 encryptedPassword shouldBe "encryptedPassword"
             }

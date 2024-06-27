@@ -21,7 +21,6 @@ import io.mockk.unmockkObject
 import io.mockk.unmockkStatic
 import kotlinx.datetime.Clock
 import java.util.UUID
-import kotlin.math.sign
 
 class SignInAccountCommandHandlerTest : DescribeSpec({
 
