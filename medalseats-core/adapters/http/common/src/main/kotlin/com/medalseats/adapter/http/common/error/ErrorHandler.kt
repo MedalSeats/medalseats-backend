@@ -3,6 +3,9 @@ package com.medalseats.adapter.http.common.error
 import com.medalseats.adapter.http.common.error.ErrorCode.MDS_000
 import com.medalseats.adapter.http.common.error.ErrorCode.MDS_001
 import com.medalseats.adapter.http.common.error.ErrorCode.MDS_002
+import com.medalseats.adapter.http.common.error.ErrorCode.MDS_003
+import com.unicamp.medalseats.account.exception.AccountException
+import com.unicamp.medalseats.payment.exception.PaymentException
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -59,6 +62,10 @@ private fun Throwable.toResponse(locale: Locale): Pair<HttpStatusCode, ErrorResp
             UNPROCESSABLE_ENTITY,
             "$constraintViolations"
         )
+
+        is PaymentException.PaymentNotFoundException -> toResponse(locale, MDS_003, UNPROCESSABLE_ENTITY)
+        is AccountException.AccountEmailNotFoundException -> toResponse(locale, ErrorCode.MDS_004, UNPROCESSABLE_ENTITY)
+        is AccountException.AccountConflictException -> toResponse(locale, ErrorCode.MDS_005, UNPROCESSABLE_ENTITY)
 
         is ResponseStatusException -> toResponse(locale, MDS_000, statusCode)
         is SerializationException -> toResponse(locale, MDS_001, UNPROCESSABLE_ENTITY)
