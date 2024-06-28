@@ -14,7 +14,7 @@ class PaymentQueryHttpHandler(
 ) {
     suspend fun findPaymentsByEmail(req: ServerRequest): ServerResponse {
         val query = FindPaymentsByEmailQuery(
-            email = req.awaitBody<FindPaymentsByEmailRequest>().email
+            email = req.pathVariable("email")
         )
 
         return ServerResponse.ok().bodyValueAndAwait(findPaymentsByEmailQueryHandler.handle(query).toResponse())

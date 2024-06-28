@@ -22,7 +22,7 @@ fun router(
         }
 
         "/account".nest {
-            GET(pattern = "/payments") { req ->
+            GET(pattern = "/payments/{email}") { req ->
                 paymentQueryHttpHandler.findPaymentsByEmail(req)
             }
         }
